@@ -11,12 +11,12 @@ object TerminalTab : Tab() {
 
     fun write(text: String) {
         textArea.text = text
-        this.text = StringUtils.abbreviate(textArea.text, 5)
+        this.text = makeTitle()
     }
 
     fun append(text: String) {
         textArea.text = "\n" + textArea.text + text
-        this.text = StringUtils.abbreviate(textArea.text, 5)
+        this.text = makeTitle()
     }
 
     fun clear() {
@@ -35,4 +35,5 @@ object TerminalTab : Tab() {
         content = textArea
     }
 
+    private fun makeTitle() = StringUtils.abbreviate(textArea.text.replace("\n", ""), 15)
 }

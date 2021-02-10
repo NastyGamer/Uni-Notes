@@ -138,11 +138,21 @@ class Controller {
         buttonRunCode.onMouseClicked = EventHandler {
             if (CodeTab.currentFile != null) {
                 CodeTab.currentFile!!.save(CodeTab.textArea.text)
-                Runtime.getRuntime().exec(
-                    "gnome-terminal --wait --hide-menubar --window -- java ${(treeView.selectionModel.selectedItem as File).jFile.absolutePath}".split(
-                        " "
-                    ).toTypedArray()
-                )
+                val builder = ProcessBuilder("java", (treeView.selectionModel.selectedItem as File).name)
+                builder.directory(Path((treeView.selectionModel.selectedItem as File).jFile.absolutePath).parent.toFile())
+                builder.redirectErrorStream(true)
+                val proc = builder.start()
+                tabPane.selectionModel.select(TerminalTab)
+                doWhen({ !proc.isAlive }) {
+                    Platform.runLater {
+                        TerminalTab.write(
+                            IOUtils.toString(
+                                proc.inputStream,
+                                StandardCharsets.UTF_8
+                            )
+                        )
+                    }
+                }
             }
         }
         buttonPdf.onMouseClicked = EventHandler {

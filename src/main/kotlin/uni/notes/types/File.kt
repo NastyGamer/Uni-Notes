@@ -29,7 +29,7 @@ data class File(var name: String, var jFile: File) : TreeItem<String>(
         var nonAscii = 0
         bytes.reduceAsNeeded(500).forEach { byte -> if (isAscii(byte.toInt())) ascii++ else nonAscii++ }
         println("Analysis result: Ascii: $ascii Non-Ascii: $nonAscii => ${if (ascii > nonAscii) "Ascii" else "Non-Ascii"}")
-        return ascii > nonAscii
+        return if (ascii == 0 && nonAscii == 0) true else (ascii > nonAscii)
     }
 
     private fun ByteArray.reduceAsNeeded(size: Int): ByteArray {
