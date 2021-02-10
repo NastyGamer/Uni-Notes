@@ -72,6 +72,7 @@ class Controller {
         treeView.root = TreeItem("Notes").also { treeItem -> treeItem.children.addAll(FileTree.subjects) }
     }
 
+    @Suppress("EXPERIMENTAL_IS_NOT_ENABLED")
     @OptIn(ExperimentalPathApi::class)
     @FXML
     fun initialize() {
