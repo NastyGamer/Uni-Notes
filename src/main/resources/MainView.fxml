@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTreeView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<HBox fx:id="hbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uni.notes.Controller">
+    <GridPane fx:id="toolBar" alignment="CENTER" maxWidth="48.0" minWidth="48.0" prefWidth="48.0" style="-fx-background-color: #303030;">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="48.0" minHeight="48.0" prefHeight="48.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="48.0" minHeight="48.0" prefHeight="48.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="48.0" minHeight="48.0" prefHeight="48.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="48.0" minHeight="48.0" prefHeight="48.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="48.0" minHeight="48.0" prefHeight="48.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="48.0" minHeight="48.0" prefHeight="48.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="48.0" minHeight="48.0" prefHeight="48.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="48.0" minHeight="48.0" prefHeight="48.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints maxHeight="48.0" minHeight="48.0" prefHeight="48.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <Button fx:id="buttonAddNote" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #303030;" textAlignment="CENTER">
+            <graphic>
+                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/notebook-plus.png" />
+                </ImageView>
+            </graphic>
+            <GridPane.margin>
+                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+            </GridPane.margin>
+            <tooltip>
+                <Tooltip text="Create a new Note" />
+            </tooltip>
+        </Button>
+        <Button fx:id="buttonAddSubject" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #303030;" GridPane.rowIndex="1">
+            <graphic>
+                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/folder-multiple-plus.png" />
+                </ImageView>
+            </graphic>
+            <GridPane.margin>
+                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+            </GridPane.margin>
+            <tooltip>
+                <Tooltip text="Create a new Subject" />
+            </tooltip>
+        </Button>
+        <Button fx:id="buttonRunCode" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #303030;" GridPane.rowIndex="3">
+            <GridPane.margin>
+                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+            </GridPane.margin>
+            <graphic>
+                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/play.png" />
+                </ImageView>
+            </graphic>
+            <tooltip>
+                <Tooltip text="Run the current Code snippet" />
+            </tooltip>
+        </Button>
+        <Button fx:id="buttonAddCode" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #303030;" GridPane.rowIndex="2">
+            <GridPane.margin>
+                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+            </GridPane.margin>
+            <graphic>
+                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/code-tags.png" />
+                </ImageView>
+            </graphic>
+            <tooltip>
+                <Tooltip text="Create a new Code snippet" />
+            </tooltip>
+        </Button>
+        <Button fx:id="buttonSave" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #303030;" GridPane.rowIndex="4">
+            <graphic>
+                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/content-save-outline.png" />
+                </ImageView>
+            </graphic>
+            <tooltip>
+                <Tooltip text="Save" />
+            </tooltip>
+            <GridPane.margin>
+                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+            </GridPane.margin>
+        </Button>
+        <Button fx:id="buttonSettings" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #303030;" GridPane.rowIndex="10">
+            <graphic>
+                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/cog.png" />
+                </ImageView>
+            </graphic>
+            <tooltip>
+                <Tooltip text="Settings" />
+            </tooltip>
+            <GridPane.margin>
+                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+            </GridPane.margin>
+        </Button>
+        <Button fx:id="buttonOpenExternal" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #303030;" GridPane.rowIndex="5">
+            <graphic>
+                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/arrow-top-left-thick.png" />
+                </ImageView>
+            </graphic>
+            <tooltip>
+                <Tooltip text="Open External" />
+            </tooltip>
+            <GridPane.margin>
+                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+            </GridPane.margin>
+        </Button>
+        <Button fx:id="buttonPdf" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #303030;" GridPane.rowIndex="6">
+            <graphic>
+                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/eye-outline.png" />
+                </ImageView>
+            </graphic>
+            <tooltip>
+                <Tooltip text="Build and view as PDF" />
+            </tooltip>
+            <GridPane.margin>
+                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+            </GridPane.margin>
+        </Button>
+      <Button fx:id="buttonReloadFiletree" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #303030;" GridPane.rowIndex="7">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/reload.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <tooltip>
+            <Tooltip text="Reload filetree" />
+         </tooltip>
+         <GridPane.margin>
+            <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+         </GridPane.margin>
+      </Button>
+    </GridPane>
+    <JFXTreeView fx:id="treeView" prefHeight="400.0" prefWidth="206.0" style="-fx-background-color: #181818;" styleClass="tree-cell" />
+    <JFXTabPane fx:id="tabPane" prefHeight="400.0" prefWidth="350.0" side="BOTTOM" style="-fx-background-color: #303030;" tabClosingPolicy="ALL_TABS" tabDragPolicy="REORDER" />
+</HBox>
