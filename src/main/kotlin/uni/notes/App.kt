@@ -29,19 +29,20 @@ class App : Application() {
         stage.scene = scene
         stage.widthProperty()
             .addListener { _, _, newValue ->
-                if (!newValue.toDouble().isNaN() && !stage.height.isNaN()) controller.resize(
+                if (!newValue.toDouble().isNaN() && !stage.height.isNaN()) controller.onResize(
                     newValue.toInt(),
                     stage.height.roundToInt()
                 )
             }
         stage.heightProperty()
             .addListener { _, _, newValue ->
-                if (!newValue.toDouble().isNaN() && !stage.width.isNaN()) controller.resize(
+                if (!newValue.toDouble().isNaN() && !stage.width.isNaN()) controller.onResize(
                     stage.width.roundToInt(),
                     newValue.toInt()
                 )
             }
         stage.icons.add(Image(javaClass.classLoader.getResourceAsStream("Icon.png")))
+        stage.title = "Uni Notes"
         Instance.stage = stage
         stage.show()
     }

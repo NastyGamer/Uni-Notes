@@ -24,6 +24,7 @@ object Input {
         stage.initOwner(App.stage)
         stage.initModality(Modality.APPLICATION_MODAL)
         stage.isResizable = false
+        stage.title = "Create new subject"
         okayButton.onMouseClicked = EventHandler { stage.close() }
         cancelButton.onMouseClicked = EventHandler { stage.close() }
         stage.showAndWait()
@@ -44,6 +45,7 @@ object Input {
         stage.initOwner(App.stage)
         stage.initModality(Modality.APPLICATION_MODAL)
         stage.isResizable = false
+        stage.title = "Create new note"
         okayButton.onMouseClicked = EventHandler { stage.close() }
         cancelButton.onMouseClicked = EventHandler { stage.close() }
         stage.showAndWait()
@@ -56,8 +58,8 @@ object Input {
         val textField = root.childrenUnmodifiable[0] as TextField
         val cancelButton = (root.childrenUnmodifiable[1] as HBox).children[0]
         val okayButton = (root.childrenUnmodifiable[1] as HBox).children[1]
-        val subjectBox = (root.childrenUnmodifiable[3] as ChoiceBox<String>)
-        val noteBox = (root.childrenUnmodifiable[2] as ChoiceBox<String>)
+        @Suppress("UNCHECKED_CAST") val subjectBox = (root.childrenUnmodifiable[3] as ChoiceBox<String>)
+        @Suppress("UNCHECKED_CAST") val noteBox = (root.childrenUnmodifiable[2] as ChoiceBox<String>)
         subjectBox.items.addAll(FileTree.subjects.map { subject -> subject.name })
         subjectBox.selectionModel.selectedItemProperty().addListener { _, _, newValue ->
             noteBox.items.clear(); noteBox.items.addAll(FileTree.subjectByName(newValue).notes.map { note ->
@@ -72,6 +74,7 @@ object Input {
         stage.initOwner(App.stage)
         stage.initModality(Modality.APPLICATION_MODAL)
         stage.isResizable = false
+        stage.title = "Create new Codefile"
         okayButton.onMouseClicked = EventHandler { stage.close() }
         cancelButton.onMouseClicked = EventHandler { stage.close() }
         stage.showAndWait()

@@ -33,7 +33,7 @@
         <Button fx:id="buttonAddNote" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #303030;" textAlignment="CENTER">
             <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icons/notebook-plus.png" />
+                    <Image url="@icons/buttons/notebook-plus.png" />
                 </ImageView>
             </graphic>
             <GridPane.margin>
@@ -46,7 +46,7 @@
         <Button fx:id="buttonAddSubject" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #303030;" GridPane.rowIndex="1">
             <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icons/folder-multiple-plus.png" />
+                    <Image url="@icons/buttons/folder-multiple-plus.png" />
                 </ImageView>
             </graphic>
             <GridPane.margin>
@@ -62,7 +62,7 @@
             </GridPane.margin>
             <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icons/play.png" />
+                    <Image url="@icons/buttons/play.png" />
                 </ImageView>
             </graphic>
             <tooltip>
@@ -75,7 +75,7 @@
             </GridPane.margin>
             <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icons/code-tags.png" />
+                    <Image url="@icons/buttons/code-tags.png" />
                 </ImageView>
             </graphic>
             <tooltip>
@@ -85,7 +85,7 @@
         <Button fx:id="buttonSave" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #303030;" GridPane.rowIndex="4">
             <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icons/content-save-outline.png" />
+                    <Image url="@icons/buttons/content-save-outline.png" />
                 </ImageView>
             </graphic>
             <tooltip>
@@ -98,7 +98,7 @@
         <Button fx:id="buttonSettings" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #303030;" GridPane.rowIndex="10">
             <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icons/cog.png" />
+                    <Image url="@icons/buttons/cog.png" />
                 </ImageView>
             </graphic>
             <tooltip>
@@ -111,7 +111,7 @@
         <Button fx:id="buttonOpenExternal" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #303030;" GridPane.rowIndex="5">
             <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icons/arrow-top-left-thick.png" />
+                    <Image url="@icons/buttons/arrow-top-left-thick.png" />
                 </ImageView>
             </graphic>
             <tooltip>
@@ -124,7 +124,7 @@
         <Button fx:id="buttonPdf" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #303030;" GridPane.rowIndex="6">
             <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icons/eye-outline.png" />
+                    <Image url="@icons/buttons/eye-outline.png" />
                 </ImageView>
             </graphic>
             <tooltip>
@@ -136,11 +136,9 @@
         </Button>
       <Button fx:id="buttonReloadFiletree" maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #303030;" GridPane.rowIndex="7">
          <graphic>
-            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@icons/reload.png" />
-               </image>
-            </ImageView>
+             <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                 <Image url="@icons/buttons/reload.png"/>
+             </ImageView>
          </graphic>
          <tooltip>
             <Tooltip text="Reload filetree" />

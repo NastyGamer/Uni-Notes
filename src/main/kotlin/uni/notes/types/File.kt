@@ -3,6 +3,7 @@ package uni.notes.types
 import javafx.scene.control.TreeItem
 import org.apache.commons.io.FilenameUtils
 import uni.notes.Icons
+import uni.notes.discard
 import java.io.File
 
 data class File(var name: String, var jFile: File) : TreeItem<String>(
@@ -17,7 +18,7 @@ data class File(var name: String, var jFile: File) : TreeItem<String>(
     }
 ) {
 
-    fun openExternally(): Unit = Runtime.getRuntime().exec("code ${jFile.absolutePath}").let {}
+    fun openExternally() = Runtime.getRuntime().exec("code ${jFile.absolutePath}").discard()
 
     fun save(content: String) {
         jFile.writeText(content)

@@ -5,6 +5,7 @@ Fully-featured text-editor and notes-manager written in Kotlin
 - `pdflatex`
 - `LaTeX-Installation`
 - `Java 15 JRE`
+- `VSCode`
 
 ### Build dependencies
 > For building, I highly recommend using IntelliJ from Jetbrains
