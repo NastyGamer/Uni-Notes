@@ -1,8 +1,19 @@
 package uni.notes.providers
 
+import org.apache.commons.io.FilenameUtils
+import org.apache.commons.io.filefilter.DirectoryFileFilter
 import org.fife.ui.autocomplete.BasicCompletion
 import org.fife.ui.autocomplete.CompletionProvider
 import org.fife.ui.autocomplete.DefaultCompletionProvider
+import uni.notes.ThreadPool
+import uni.notes.doWhen
+import java.io.File
+import java.io.FileFilter
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.util.*
+import java.util.concurrent.ConcurrentLinkedQueue
+import java.util.regex.Pattern
 
 
 class LatexProvider : Provider {
@@ -169,20 +180,20 @@ class LatexProvider : Provider {
     )
 
     override fun getCompletion(): CompletionProvider {
-        //println("Starting index")
+        println("Starting index")
         val prov = DefaultCompletionProvider()
         keywords.forEach { word -> prov.addCompletion(BasicCompletion(prov, word)) }
-        /*val folders = File("/usr/share/texmf-dist/tex/latex").listFiles(DirectoryFileFilter.INSTANCE as FileFilter)
+        val folders = File("/usr/share/texmf-dist/tex/latex").listFiles(DirectoryFileFilter.INSTANCE as FileFilter)
         val globalQueue: Queue<String> = ConcurrentLinkedQueue()
         val pool = ThreadPool()
         folders!!.forEach { folder ->
             pool.add(object : Thread() {
                 override fun run() {
                     Files.walk(Paths.get(folder.absolutePath))
-                        .filter(Files::isRegularFile).filter(Files::isReadable).filter { file -> FilenameUtils.getExtension(file.toFile().name) == "sty" }
+                        .filter(Files::isRegularFile).filter(Files::isReadable).filter { file -> FilenameUtils.isExtension(file.toFile().name, "tex") }
                         .forEach {
                             val content = it.toFile().readText()
-                            val matcher = Pattern.compile("\\\\newcommand\\{\\\\([a-zA-Z]+)\\}\\[?.+\\]?\\{?.*\\}?").matcher(content)
+                            val matcher = Pattern.compile("\\\\newcommand\\{\\\\(\\w+)\\}").matcher(content)
                             while (matcher.find()) {
                                 globalQueue.add(matcher.group(1))
                             }
@@ -191,9 +202,10 @@ class LatexProvider : Provider {
             })
         }
         pool.start()
-        while (!pool.finished()) Thread.sleep(10)
-        globalQueue.forEach{ word -> prov.addCompletion(BasicCompletion(prov, word)) }
-        println("Indexing finished")*/
+        doWhen({ pool.finished() }) {
+            globalQueue.forEach { word -> prov.addCompletion(BasicCompletion(prov, word)) }
+            println("Indexing finished")
+        }
         return prov
     }
 }

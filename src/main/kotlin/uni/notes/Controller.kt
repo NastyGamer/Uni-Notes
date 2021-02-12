@@ -1,11 +1,11 @@
 package uni.notes
 
+import com.jfoenix.controls.JFXButton
 import com.jfoenix.controls.JFXTabPane
 import com.jfoenix.controls.JFXTreeView
 import javafx.application.Platform
 import javafx.event.EventHandler
 import javafx.fxml.FXML
-import javafx.scene.control.Button
 import javafx.scene.control.Tab
 import javafx.scene.control.TreeItem
 import javafx.scene.layout.GridPane
@@ -38,22 +38,22 @@ class Controller {
     lateinit var toolBar: GridPane
 
     @FXML
-    lateinit var buttonAddNote: Button
+    lateinit var buttonAddNote: JFXButton
 
     @FXML
-    lateinit var buttonAddSubject: Button
+    lateinit var buttonAddSubject: JFXButton
 
     @FXML
-    lateinit var buttonRunCode: Button
+    lateinit var buttonRunCode: JFXButton
 
     @FXML
-    lateinit var buttonAddCode: Button
+    lateinit var buttonAddCode: JFXButton
 
     @FXML
-    lateinit var buttonSave: Button
+    lateinit var buttonSave: JFXButton
 
     @FXML
-    lateinit var buttonSettings: Button
+    lateinit var buttonSettings: JFXButton
 
     @FXML
     lateinit var treeView: JFXTreeView<String>
@@ -62,13 +62,13 @@ class Controller {
     lateinit var tabPane: JFXTabPane
 
     @FXML
-    lateinit var buttonOpenExternal: Button
+    lateinit var buttonOpenExternal: JFXButton
 
     @FXML
-    lateinit var buttonPdf: Button
+    lateinit var buttonPdf: JFXButton
 
     @FXML
-    lateinit var buttonReloadFiletree: Button
+    lateinit var buttonReloadFiletree: JFXButton
 
     private fun rebuildTree() {
         treeView.root = TreeItem("Notes").also { treeItem -> treeItem.children.addAll(FileTree.subjects) }
