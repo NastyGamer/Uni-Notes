@@ -73,6 +73,10 @@ object CodeTab : Tab() {
         currentFile = file
     }
 
+    fun reloadFile() {
+        currentFile?.let { textArea.text = it.jFile.readText() }
+    }
+
     init {
         setupTextArea()
         val node = SwingNode()

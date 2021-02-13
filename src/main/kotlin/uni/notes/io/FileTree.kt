@@ -1,13 +1,17 @@
 package uni.notes.io
 
+import io.methvin.watcher.DirectoryChangeEvent
 import javafx.scene.control.TreeItem
 import org.apache.commons.io.FileUtils
+import uni.notes.tabs.CodeTab
 import uni.notes.types.Note
 import uni.notes.types.Subject
 import uni.notes.ui.Controller
 import uni.notes.util.addIf
+import uni.notes.util.getSelectedFile
 import java.io.File
 import java.net.URL
+import java.nio.file.Paths
 
 object FileTree {
 
@@ -79,6 +83,25 @@ object FileTree {
     init {
         buildTree()
         buildCollapseTree()
+        @Suppress("NON_EXHAUSTIVE_WHEN")
+        val w = io.methvin.watcher.DirectoryWatcher
+            .builder()
+            .path(Paths.get(UserPrefs.NOTEBOOK_PATH))
+            .fileHashing(true)
+            .logger(null)
+            .listener { event ->
+                when (event.eventType()) {
+                    DirectoryChangeEvent.EventType.MODIFY -> {
+                        Controller.cTreeView.getSelectedFile()?.let {
+                            if (it.jFile.absolutePath.equals(event.path().toFile().absoluteFile) && Controller.cButtonPdf.isSelected)
+                                IO.buildAndShowPDF()
+                                CodeTab.reloadFile()
+                        }
+                    }
+                }
+            }
+            .build()
+        w.watchAsync()
     }
 
     fun addSubject(name: String) {
