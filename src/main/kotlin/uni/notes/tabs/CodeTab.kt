@@ -7,10 +7,11 @@ import org.apache.commons.io.FilenameUtils
 import org.fife.ui.autocomplete.AutoCompletion
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants
-import uni.notes.ui.Colors
-import uni.notes.ui.Icons
+import uni.notes.io.IO
 import uni.notes.providers.CompletionProviders
 import uni.notes.types.File
+import uni.notes.ui.Colors
+import uni.notes.ui.Icons
 import java.awt.Color
 import java.awt.Font
 import java.awt.event.KeyAdapter
@@ -41,6 +42,7 @@ object CodeTab : Tab() {
         textArea.background = Colors.grayLight
         textArea.foreground = Color.WHITE
         textArea.currentLineHighlightColor = Colors.grayDark
+        textArea.tabSize = 4
         textArea.font =
             Font.createFont(Font.TRUETYPE_FONT, javaClass.classLoader.getResourceAsStream("SourceCodePro.ttf"))
                 .deriveFont(16f)
@@ -50,6 +52,7 @@ object CodeTab : Tab() {
 
     fun openFile(file: File) {
         currentFile?.save(textArea.text)
+        textArea.restoreDefaultSyntaxScheme()
         textArea.syntaxEditingStyle = when (FilenameUtils.getExtension(file.name)) {
             "java" -> SyntaxConstants.SYNTAX_STYLE_JAVA
             "tex" -> SyntaxConstants.SYNTAX_STYLE_LATEX
@@ -88,8 +91,10 @@ object CodeTab : Tab() {
         textArea.addKeyListener(object : KeyAdapter() {
             override fun keyPressed(e: KeyEvent) {
                 if (e.keyCode == KeyEvent.VK_S && e.isControlDown) {
-                    println("Saving")
                     currentFile?.save(textArea.text)
+                    if (FilenameUtils.isExtension(currentFile?.name, "tex")) {
+                        IO.buildAndShowPDF()
+                    }
                 }
             }
         })

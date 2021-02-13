@@ -9,7 +9,7 @@ import java.io.FileReader
 object UserPrefs {
 
     val ROOT_PATH = System.getProperty("user.home") + File.separator + ".uni-notes"
-    val SETTINGS_PATH = ROOT_PATH + File.separator + "settings.ini"
+    private val SETTINGS_PATH = ROOT_PATH + File.separator + "settings.ini"
     lateinit var NOTEBOOK_PATH: String
     lateinit var TEMPLATE_URL: String
 

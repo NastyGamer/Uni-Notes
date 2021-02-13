@@ -70,7 +70,7 @@ object FileTree {
         }
     }
 
-    fun refreshTree() {
+    private fun refreshTree() {
         buildCollapseTree()
         buildTree()
         applyCollapseTree()
@@ -129,10 +129,8 @@ object FileTree {
         refreshTree()
     }
 
-    fun toString(file: uni.notes.types.File) = file.name
     fun toString(note: Note) = note.name
-    fun toString(subject: Subject) = subject.name
 
     fun subjectByName(name: String) = subjects.first { subject -> subject.name == name }
-    fun noteByName(note: String, subject: String) = subjectByName(subject).notes.first { n -> n.name == note }
+    private fun noteByName(note: String, subject: String) = subjectByName(subject).notes.first { n -> n.name == note }
 }

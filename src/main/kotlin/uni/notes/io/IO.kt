@@ -7,7 +7,8 @@ import uni.notes.tabs.TerminalTab
 import uni.notes.ui.Controller
 import uni.notes.ui.Icons
 import uni.notes.ui.Notifications
-import uni.notes.util.*
+import uni.notes.util.doWhen
+import uni.notes.util.getSelectedFile
 import java.nio.charset.StandardCharsets
 import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.Path
@@ -32,20 +33,21 @@ object IO {
         if (!Controller.cButtonPdf.isSelected) return
         Controller.cTreeView.getSelectedFile()?.let {
             Notifications.showInfo("Building ${it.name}", Icons.hammerIcon())
-            val pdfLatexBuilder = ProcessBuilder("pdflatex", it.name)
+            val pdfLatexBuilder = ProcessBuilder("pdflatex", "-interaction=nonstopmode", "-halt-on-error", it.name)
             pdfLatexBuilder.directory(Path(it.jFile.absolutePath).parent.toFile())
-            pdfLatexBuilder.redirectErrorStream(true)
             val pdfLatexProc = pdfLatexBuilder.start()
             doWhen({ !pdfLatexProc.isAlive }) {
-                kotlin.run {
-                    Platform.runLater { TerminalTab.write(IOUtils.toString(pdfLatexProc.inputStream, StandardCharsets.UTF_8)) }
+                Platform.runLater { TerminalTab.write(IOUtils.toString(pdfLatexProc.inputStream, StandardCharsets.UTF_8)) }
+                Platform.runLater { TerminalTab.append(IOUtils.toString(pdfLatexProc.errorStream, StandardCharsets.UTF_8)) }
+                if (pdfLatexProc.exitValue() == 0) {
                     val xdgBuilder = ProcessBuilder("xdg-open", it.name.replace("tex", "pdf"))
                     xdgBuilder.directory(Path(it.jFile.absolutePath).parent.toFile())
                     xdgBuilder.redirectErrorStream(true)
                     val xdgProc = xdgBuilder.start()
                     doWhen({ !xdgProc.isAlive })
                     { Platform.runLater { TerminalTab.append(IOUtils.toString(xdgProc.inputStream, StandardCharsets.UTF_8)) } }
-                }
+                } else
+                    Notifications.showWarning("Error compiling")
             }
         }
     }

@@ -19,11 +19,6 @@ object TerminalTab : Tab() {
         this.text = makeTitle()
     }
 
-    fun clear() {
-        textArea.text = "Output will appear here"
-        this.text = ""
-    }
-
     init {
         textArea.isEditable = false
         textArea.prefWidth = 1000.0

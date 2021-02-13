@@ -49,14 +49,14 @@ object Notifications {
     }
 
     fun showWarning(text: String) {
-        showNotification(this.javaClass.classLoader.getResource("fxml/notifications/Warning.fxml")!!, text, Icons.warningIcon(), 3000)
+        Platform.runLater { showNotification(this.javaClass.classLoader.getResource("fxml/notifications/Warning.fxml")!!, text, Icons.warningIcon(), 3000) }
     }
 
     fun showError(text: String) {
-        showNotification(this.javaClass.classLoader.getResource("fxml/notifications/Error.fxml")!!, text, Icons.errorIcon(), -1)
+        Platform.runLater { showNotification(this.javaClass.classLoader.getResource("fxml/notifications/Error.fxml")!!, text, Icons.errorIcon(), -1) }
     }
 
     fun showInfo(text: String, image: ImageView) {
-        showNotification(this.javaClass.classLoader.getResource("fxml/notifications/Info.fxml")!!, text, image, 1000)
+        Platform.runLater { showNotification(this.javaClass.classLoader.getResource("fxml/notifications/Info.fxml")!!, text, image, 1000) }
     }
 }

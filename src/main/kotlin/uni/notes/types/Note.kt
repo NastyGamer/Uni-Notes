@@ -9,8 +9,6 @@ class Note(val name: String, val files: ArrayList<File>) : TreeItem<String>(name
         children.addAll(files)
     }
 
-    fun addFile(file: File) = files.add(file)
-
     override fun toString(): String {
         return "Note(name='$name', files=$files)"
     }

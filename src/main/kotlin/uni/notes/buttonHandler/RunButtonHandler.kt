@@ -23,8 +23,8 @@ object RunButtonHandler : ButtonHandler<JFXButton> {
         t.onMouseClicked = EventHandler {
             IO.saveCurrentFile()
             Controller.cTreeView.getSelectedFile()?.let {
-                Notifications.showInfo("Building ${it.name}", Icons.hammerIcon())
                 if (FilenameUtils.isExtension(it.name, "java")) {
+                    Notifications.showInfo("Building ${it.name}", Icons.hammerIcon())
                     val javaBuilder = ProcessBuilder("java", it.name)
                     javaBuilder.directory(Path(it.jFile.absolutePath).parent.toFile())
                     javaBuilder.redirectErrorStream(true)
@@ -33,7 +33,7 @@ object RunButtonHandler : ButtonHandler<JFXButton> {
                     doWhen({ !javaProc.isAlive }) {
                         Platform.runLater { TerminalTab.write(IOUtils.toString(javaProc.inputStream, StandardCharsets.UTF_8)) }
                     }
-                } else Notifications.showError("File is not a Java source-file")
+                } else Notifications.showWarning("File is not a Java source-file")
             }
         }
     }

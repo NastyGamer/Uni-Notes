@@ -9,8 +9,6 @@ class Subject(val name: String, val notes: ArrayList<Note>) : TreeItem<String>(n
         children.addAll(notes)
     }
 
-    fun addNote(note: Note) = notes.add(note)
-
     override fun toString(): String {
         return "Subject(name='$name', notes=$notes)"
     }

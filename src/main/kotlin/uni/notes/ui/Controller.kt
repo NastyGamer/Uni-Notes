@@ -128,9 +128,9 @@ class Controller {
         RunButtonHandler.setupButton(buttonRunCode)
         SaveButtonHandler.setupButton(buttonSave)
         ExternalButtonHandler.setupButton(buttonOpenExternal)
-        PreviewButtonHandler.setupButton(buttonPdf)
         ReloadButtonHandler.setupButton(buttonReloadFiletree)
         SettingsButtonHandler.setupButton(buttonSettings)
+        TogglePreviewButton.setupButton(buttonPdf)
     }
 
     private fun buildFileTree() {
