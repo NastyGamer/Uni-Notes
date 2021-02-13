@@ -5,6 +5,7 @@ import javafx.scene.control.TextArea
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import uni.notes.ui.Icons
+import uni.notes.util.Logger
 import uni.notes.util.doWhen
 
 object HexTab : Tab() {
@@ -15,11 +16,11 @@ object HexTab : Tab() {
     fun openFile(file: uni.notes.types.File) {
         textArea.text = "Waiting for indexing to finish..."
         bytes.clear()
-        println("Beginning indexing")
+        Logger.info("Beginning indexing")
         val job = GlobalScope.launch {
             file.jFile.readBytes().forEach { byte -> bytes.add(String.format("%02X ", byte)) }
         }
-        doWhen({ job.isCompleted }) { textArea.text = bytes.joinToString(" "); println("Done indexing") }
+        doWhen({ job.isCompleted }) { textArea.text = bytes.joinToString(" "); Logger.info("Done indexing") }
     }
 
     init {

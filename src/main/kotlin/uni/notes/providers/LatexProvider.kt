@@ -5,6 +5,7 @@ import org.apache.commons.io.filefilter.DirectoryFileFilter
 import org.fife.ui.autocomplete.BasicCompletion
 import org.fife.ui.autocomplete.CompletionProvider
 import org.fife.ui.autocomplete.DefaultCompletionProvider
+import uni.notes.util.Logger
 import uni.notes.util.ThreadPool
 import uni.notes.util.doWhen
 import java.io.File
@@ -181,7 +182,7 @@ class LatexProvider : Provider {
     )
 
     override fun getCompletion(): CompletionProvider {
-        println("Starting index")
+        Logger.info("Starting index")
         val prov = DefaultCompletionProvider()
         keywords.forEach { word -> prov.addCompletion(BasicCompletion(prov, word)) }
         @Suppress("SpellCheckingInspection")
@@ -208,7 +209,7 @@ class LatexProvider : Provider {
         pool.start()
         doWhen({ pool.finished() }) {
             globalQueue.forEach { word -> prov.addCompletion(BasicCompletion(prov, word)) }
-            println("Indexing finished")
+            Logger.info("Indexing finished")
         }
         return prov
     }

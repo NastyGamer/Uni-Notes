@@ -10,7 +10,7 @@ class ThreadPool {
     }
 
     fun start() {
-        println("Dispatching ${threads.size} threads")
+        Logger.info("Dispatching ${threads.size} threads")
         threads.forEach { thread -> thread.start() }
     }
 
