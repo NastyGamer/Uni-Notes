@@ -1,4 +1,4 @@
-package uni.notes
+package uni.notes.io
 
 import org.apache.commons.io.FilenameUtils
 import uni.notes.tabs.FiletypeTab

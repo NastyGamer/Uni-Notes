@@ -7,12 +7,14 @@ import org.apache.commons.io.FilenameUtils
 import org.fife.ui.autocomplete.AutoCompletion
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants
-import uni.notes.Colors
-import uni.notes.Icons
+import uni.notes.ui.Colors
+import uni.notes.ui.Icons
 import uni.notes.providers.CompletionProviders
 import uni.notes.types.File
 import java.awt.Color
 import java.awt.Font
+import java.awt.event.KeyAdapter
+import java.awt.event.KeyEvent
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import javax.swing.SwingUtilities
@@ -80,6 +82,14 @@ object CodeTab : Tab() {
                     while (!node.isFocused) {
                         node.requestFocus()
                     }
+                }
+            }
+        })
+        textArea.addKeyListener(object : KeyAdapter() {
+            override fun keyPressed(e: KeyEvent) {
+                if (e.keyCode == KeyEvent.VK_S && e.isControlDown) {
+                    println("Saving")
+                    currentFile?.save(textArea.text)
                 }
             }
         })

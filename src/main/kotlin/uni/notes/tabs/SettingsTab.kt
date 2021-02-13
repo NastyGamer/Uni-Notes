@@ -11,6 +11,10 @@ import org.apache.commons.io.FileUtils
 import org.apache.commons.io.filefilter.DirectoryFileFilter
 import org.apache.commons.validator.routines.UrlValidator
 import uni.notes.*
+import uni.notes.io.UserPrefs
+import uni.notes.ui.Colors
+import uni.notes.ui.Icons
+import uni.notes.util.asPaint
 import java.io.File
 import java.io.FileFilter
 import kotlin.system.exitProcess

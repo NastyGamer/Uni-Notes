@@ -1,4 +1,4 @@
-package uni.notes
+package uni.notes.util
 
 class ThreadPool {
 

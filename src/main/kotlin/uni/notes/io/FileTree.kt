@@ -1,8 +1,11 @@
-package uni.notes
+package uni.notes.io
 
+import javafx.scene.control.TreeItem
 import org.apache.commons.io.FileUtils
 import uni.notes.types.Note
 import uni.notes.types.Subject
+import uni.notes.ui.Controller
+import uni.notes.util.addIf
 import java.io.File
 import java.net.URL
 
@@ -82,6 +85,10 @@ object FileTree {
         subjects.add(Subject(name, ArrayList()))
         File(UserPrefs.NOTEBOOK_PATH + "/" + name).mkdirs()
         refreshTree()
+    }
+
+    fun rebuildTreeView() {
+        Controller.cTreeView.root = TreeItem("Notes").also { treeItem -> treeItem.children.addAll(subjects) }
     }
 
     @Suppress("NAME_SHADOWING")

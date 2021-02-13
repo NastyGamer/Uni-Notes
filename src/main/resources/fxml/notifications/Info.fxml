@@ -29,6 +29,6 @@
         </GridPane.margin>
     </Label>
     <ImageView fx:id="image" fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-        <Image url="@icons/tree/file-question.png"/>
+        <Image url="@../../icons/tree/file-question.png"/>
     </ImageView>
 </GridPane>

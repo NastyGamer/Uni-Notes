@@ -1,4 +1,4 @@
-package uni.notes
+package uni.notes.io
 
 import com.eclipsesource.json.Json
 import com.eclipsesource.json.JsonObject
@@ -36,7 +36,7 @@ object UserPrefs {
         }
     }
 
-    private fun savePrefs() {
+    fun savePrefs() {
         with(File(SETTINGS_PATH)) {
             writeText(
                 JsonObject().add("notebookPath", NOTEBOOK_PATH).add("templatePath", TEMPLATE_URL)
@@ -46,12 +46,6 @@ object UserPrefs {
     }
 
     init {
-        Runtime.getRuntime().addShutdownHook(object : Thread() {
-            override fun run() {
-                println("Saving preferences")
-                savePrefs()
-            }
-        })
         loadPrefs()
     }
 

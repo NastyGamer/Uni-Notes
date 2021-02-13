@@ -1,7 +1,7 @@
 package uni.notes.types
 
 import javafx.scene.control.TreeItem
-import uni.notes.Icons
+import uni.notes.ui.Icons
 
 class Note(val name: String, val files: ArrayList<File>) : TreeItem<String>(name, Icons.noteIcon()) {
 

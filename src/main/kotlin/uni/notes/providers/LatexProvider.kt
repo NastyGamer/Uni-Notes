@@ -5,8 +5,8 @@ import org.apache.commons.io.filefilter.DirectoryFileFilter
 import org.fife.ui.autocomplete.BasicCompletion
 import org.fife.ui.autocomplete.CompletionProvider
 import org.fife.ui.autocomplete.DefaultCompletionProvider
-import uni.notes.ThreadPool
-import uni.notes.doWhen
+import uni.notes.util.ThreadPool
+import uni.notes.util.doWhen
 import java.io.File
 import java.io.FileFilter
 import java.nio.file.Files
@@ -193,7 +193,7 @@ class LatexProvider : Provider {
                         .filter(Files::isRegularFile).filter(Files::isReadable).filter { file -> FilenameUtils.isExtension(file.toFile().name, "tex") }
                         .forEach {
                             val content = it.toFile().readText()
-                            val matcher = Pattern.compile("\\\\newcommand\\{\\\\(\\w+)\\}").matcher(content)
+                            val matcher = Pattern.compile("\\\\newcommand\\{\\\\(\\w+)}").matcher(content)
                             while (matcher.find()) {
                                 globalQueue.add(matcher.group(1))
                             }

@@ -1,4 +1,4 @@
-package uni.notes
+package uni.notes.ui
 
 import java.awt.Color
 

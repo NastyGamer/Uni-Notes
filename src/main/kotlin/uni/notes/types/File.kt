@@ -2,8 +2,8 @@ package uni.notes.types
 
 import javafx.scene.control.TreeItem
 import org.apache.commons.io.FilenameUtils
-import uni.notes.Icons
-import uni.notes.discard
+import uni.notes.ui.Icons
+import uni.notes.util.discard
 import java.io.File
 
 data class File(var name: String, var jFile: File) : TreeItem<String>(

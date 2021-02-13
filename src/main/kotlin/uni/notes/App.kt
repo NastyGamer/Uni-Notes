@@ -6,6 +6,7 @@ import javafx.scene.Parent
 import javafx.scene.Scene
 import javafx.scene.image.Image
 import javafx.stage.Stage
+import uni.notes.ui.Controller
 import kotlin.math.roundToInt
 
 
@@ -20,7 +21,7 @@ class App : Application() {
     }
 
     override fun start(stage: Stage) {
-        val loader = FXMLLoader(javaClass.classLoader.getResource("MainView.fxml"))
+        val loader = FXMLLoader(javaClass.classLoader.getResource("fxml/MainView.fxml"))
         val root = loader.load<Parent>()
         val controller = loader.getController<Controller>()
         val scene = Scene(root, 1280.0, 720.0)

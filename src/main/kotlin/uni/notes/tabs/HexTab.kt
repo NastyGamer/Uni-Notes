@@ -4,8 +4,8 @@ import javafx.scene.control.Tab
 import javafx.scene.control.TextArea
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import uni.notes.Icons
-import uni.notes.doWhen
+import uni.notes.ui.Icons
+import uni.notes.util.doWhen
 
 object HexTab : Tab() {
 

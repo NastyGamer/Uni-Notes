@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTreeView?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<HBox fx:id="hbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uni.notes.Controller">
+<HBox fx:id="hbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uni.notes.ui.Controller">
     <GridPane fx:id="toolBar" alignment="CENTER" maxWidth="48.0" minWidth="48.0" prefWidth="48.0" style="-fx-background-color: #303030;">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -32,7 +33,7 @@
       <JFXButton fx:id="buttonAddNote" maxHeight="48.0" maxWidth="48.0" minHeight="48.0" minWidth="48.0" prefHeight="48.0" prefWidth="48.0" ripplerFill="WHITE">
          <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icons/buttons/notebook-plus.png" />
+                    <Image url="@../icons/buttons/notebook-plus.png" />
                 </ImageView>
          </graphic>
          <tooltip>
@@ -42,7 +43,7 @@
       <JFXButton fx:id="buttonAddSubject" maxHeight="48.0" maxWidth="48.0" minHeight="48.0" minWidth="48.0" prefHeight="48.0" prefWidth="48.0" ripplerFill="WHITE" GridPane.rowIndex="1">
          <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icons/buttons/folder-multiple-plus.png" />
+                    <Image url="@../icons/buttons/folder-multiple-plus.png" />
                 </ImageView>
          </graphic>
          <tooltip>
@@ -52,7 +53,7 @@
       <JFXButton fx:id="buttonAddCode" maxHeight="48.0" maxWidth="48.0" minHeight="48.0" minWidth="48.0" prefHeight="48.0" prefWidth="48.0" ripplerFill="WHITE" GridPane.rowIndex="2">
          <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icons/buttons/code-tags.png" />
+                    <Image url="@../icons/buttons/code-tags.png" />
                 </ImageView>
          </graphic>
          <tooltip>
@@ -62,7 +63,7 @@
       <JFXButton fx:id="buttonRunCode" maxHeight="48.0" maxWidth="48.0" minHeight="48.0" minWidth="48.0" prefHeight="48.0" prefWidth="48.0" ripplerFill="WHITE" GridPane.rowIndex="3">
          <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icons/buttons/play.png" />
+                    <Image url="@../icons/buttons/play.png" />
                 </ImageView>
          </graphic>
          <tooltip>
@@ -72,7 +73,7 @@
       <JFXButton fx:id="buttonSave" maxHeight="48.0" maxWidth="48.0" minHeight="48.0" minWidth="48.0" prefHeight="48.0" prefWidth="48.0" ripplerFill="WHITE" GridPane.rowIndex="4">
          <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icons/buttons/content-save-outline.png" />
+                    <Image url="@../icons/buttons/content-save-outline.png" />
                 </ImageView>
          </graphic>
          <tooltip>
@@ -82,27 +83,27 @@
       <JFXButton fx:id="buttonOpenExternal" maxHeight="48.0" maxWidth="48.0" minHeight="48.0" minWidth="48.0" prefHeight="48.0" prefWidth="48.0" ripplerFill="WHITE" GridPane.rowIndex="5">
          <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icons/buttons/arrow-top-left-thick.png" />
+                    <Image url="@../icons/buttons/arrow-top-left-thick.png" />
                 </ImageView>
          </graphic>
          <tooltip>
                 <Tooltip text="Open External" />
          </tooltip>
       </JFXButton>
-      <JFXButton fx:id="buttonPdf" maxHeight="48.0" maxWidth="48.0" minHeight="48.0" minWidth="48.0" prefHeight="48.0" prefWidth="48.0" ripplerFill="WHITE" GridPane.rowIndex="6">
+      <ToggleButton fx:id="buttonPdf" contentDisplay="GRAPHIC_ONLY" maxHeight="48.0" maxWidth="48.0" minHeight="48.0" minWidth="48.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-base: #303030;" text="ToggleButton" GridPane.rowIndex="6">
          <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icons/buttons/eye-outline.png" />
+                    <Image url="@../icons/buttons/eye-outline.png" />
                 </ImageView>
          </graphic>
          <tooltip>
                 <Tooltip text="Build and view as PDF" />
          </tooltip>
-      </JFXButton>
+      </ToggleButton>
       <JFXButton fx:id="buttonReloadFiletree" maxHeight="48.0" maxWidth="48.0" minHeight="48.0" minWidth="48.0" prefHeight="48.0" prefWidth="48.0" ripplerFill="WHITE" GridPane.rowIndex="7">
          <graphic>
              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                 <Image url="@icons/buttons/reload.png" />
+                 <Image url="@../icons/buttons/reload.png" />
              </ImageView>
          </graphic>
          <tooltip>
@@ -115,7 +116,7 @@
          </tooltip>
          <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icons/buttons/cog.png" />
+                    <Image url="@../icons/buttons/cog.png" />
                 </ImageView>
          </graphic>
       </JFXButton>

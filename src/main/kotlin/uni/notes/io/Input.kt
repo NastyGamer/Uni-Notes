@@ -1,4 +1,4 @@
-package uni.notes
+package uni.notes.io
 
 import javafx.event.EventHandler
 import javafx.fxml.FXMLLoader
@@ -9,12 +9,13 @@ import javafx.scene.control.TextField
 import javafx.scene.layout.HBox
 import javafx.stage.Modality
 import javafx.stage.Stage
+import uni.notes.App
 
 object Input {
 
     fun getSubjectName(): String {
         val stage = Stage()
-        val root = FXMLLoader(javaClass.classLoader.getResource("NewSubjectDialog.fxml")).load<Parent>()
+        val root = FXMLLoader(javaClass.classLoader.getResource("fxml/dialogs/NewSubjectDialog.fxml")).load<Parent>()
         val textField = root.childrenUnmodifiable[0] as TextField
         val cancelButton = (root.childrenUnmodifiable[1] as HBox).children[0]
         val okayButton = (root.childrenUnmodifiable[1] as HBox).children[1]
@@ -33,7 +34,7 @@ object Input {
 
     fun getNoteName(): Pair<String?, String?> {
         val stage = Stage()
-        val root = FXMLLoader(javaClass.classLoader.getResource("NewNoteDialog.fxml")).load<Parent>()
+        val root = FXMLLoader(javaClass.classLoader.getResource("fxml/dialogs/NewNoteDialog.fxml")).load<Parent>()
         val textField = root.childrenUnmodifiable[0] as TextField
         val cancelButton = (root.childrenUnmodifiable[1] as HBox).children[0]
         val okayButton = (root.childrenUnmodifiable[1] as HBox).children[1]
@@ -54,7 +55,7 @@ object Input {
 
     fun getCodeName(): Triple<String?, String?, String> {
         val stage = Stage()
-        val root = FXMLLoader(javaClass.classLoader.getResource("NewCodeDialog.fxml")).load<Parent>()
+        val root = FXMLLoader(javaClass.classLoader.getResource("fxml/dialogs/NewCodeDialog.fxml")).load<Parent>()
         val textField = root.childrenUnmodifiable[0] as TextField
         val cancelButton = (root.childrenUnmodifiable[1] as HBox).children[0]
         val okayButton = (root.childrenUnmodifiable[1] as HBox).children[1]

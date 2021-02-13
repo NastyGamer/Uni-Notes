@@ -3,7 +3,7 @@ package uni.notes.tabs
 import javafx.scene.control.Tab
 import javafx.scene.control.TextArea
 import org.apache.commons.lang3.StringUtils
-import uni.notes.Icons
+import uni.notes.ui.Icons
 
 object TerminalTab : Tab() {
 
