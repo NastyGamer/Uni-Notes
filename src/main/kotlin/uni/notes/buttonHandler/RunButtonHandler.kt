@@ -10,7 +10,8 @@ import uni.notes.tabs.TerminalTab
 import uni.notes.ui.Controller
 import uni.notes.ui.Icons
 import uni.notes.ui.Notifications
-import uni.notes.util.*
+import uni.notes.util.doWhen
+import uni.notes.util.getSelectedFile
 import java.nio.charset.StandardCharsets
 import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.Path

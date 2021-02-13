@@ -18,7 +18,9 @@ import uni.notes.tabs.CodeTab
 import uni.notes.tabs.HexTab
 import uni.notes.tabs.TerminalTab
 import uni.notes.types.File
-import uni.notes.util.*
+import uni.notes.util.CrashHandler
+import uni.notes.util.ExitHandler
+import uni.notes.util.percentOf
 
 
 class Controller {
@@ -39,6 +41,7 @@ class Controller {
         lateinit var cButtonReloadFileTree: JFXButton
     }
 
+    @Suppress("SpellCheckingInspection")
     @FXML
     lateinit var hbox: HBox
 
@@ -75,11 +78,12 @@ class Controller {
     @FXML
     lateinit var buttonPdf: ToggleButton
 
+    @Suppress("SpellCheckingInspection")
     @FXML
     lateinit var buttonReloadFiletree: JFXButton
 
     private fun rebuildTree() {
-        treeView.root = TreeItem("Notes").also { treeItem -> treeItem.children.addAll(FileTree.subjects) }
+        treeView.root = TreeItem("").also { treeItem -> treeItem.children.addAll(FileTree.subjects) }
     }
 
 

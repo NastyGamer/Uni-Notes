@@ -6,6 +6,7 @@ import org.fife.ui.autocomplete.DefaultCompletionProvider
 
 class JavaProvider : Provider {
 
+    @Suppress("SpellCheckingInspection")
     private val keywords = listOf(
         "abstract",
         "continue",

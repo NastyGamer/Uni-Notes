@@ -44,3 +44,12 @@ fun Triple<*, *, *>.all(condition: (Any?) -> Boolean): Boolean {
 fun Pair<*, *>.all(condition: (Any?) -> Boolean): Boolean {
     return this.toList().all { any -> condition.invoke(any) }
 }
+
+fun String.makeValidFilename(): String {
+    return replace(Regex("([/\\\\?*:\"<>,;= ()&#])+"), "-")
+}
+
+@Suppress("SpellCheckingInspection")
+fun String.makeValidFoldername(): String {
+    return replace(Regex("([/\\\\?*:\"<>.,;= ()&#])+"), "-")
+}

@@ -9,7 +9,10 @@ import javafx.scene.control.TextField
 import javafx.scene.layout.HBox
 import javafx.stage.Modality
 import javafx.stage.Stage
+import org.apache.commons.io.FilenameUtils
 import uni.notes.App
+import uni.notes.util.makeValidFilename
+import uni.notes.util.makeValidFoldername
 
 object Input {
 
@@ -29,7 +32,7 @@ object Input {
         okayButton.onMouseClicked = EventHandler { stage.close() }
         cancelButton.onMouseClicked = EventHandler { stage.close() }
         stage.showAndWait()
-        return textField.text
+        return FilenameUtils.removeExtension(textField.text).makeValidFoldername()
     }
 
     fun getNoteName(): Pair<String?, String?> {
@@ -50,7 +53,7 @@ object Input {
         okayButton.onMouseClicked = EventHandler { stage.close() }
         cancelButton.onMouseClicked = EventHandler { stage.close() }
         stage.showAndWait()
-        return Pair(choiceBox.value, textField.text)
+        return Pair(choiceBox.value, FilenameUtils.removeExtension(textField.text).makeValidFoldername())
     }
 
     fun getCodeName(): Triple<String?, String?, String> {
@@ -62,23 +65,19 @@ object Input {
         @Suppress("UNCHECKED_CAST") val subjectBox = (root.childrenUnmodifiable[3] as ChoiceBox<String>)
         @Suppress("UNCHECKED_CAST") val noteBox = (root.childrenUnmodifiable[2] as ChoiceBox<String>)
         subjectBox.items.addAll(FileTree.subjects.map { subject -> subject.name })
-        subjectBox.selectionModel.selectedItemProperty().addListener { _, _, newValue ->
-            noteBox.items.clear(); noteBox.items.addAll(FileTree.subjectByName(newValue).notes.map { note ->
-            FileTree.toString(
-                note
-            )
-        })
-        }
+        subjectBox.selectionModel.selectedItemProperty()
+            .addListener { _, _, newValue -> noteBox.items.clear(); noteBox.items.addAll(FileTree.subjectByName(newValue).notes.map { note -> FileTree.toString(note) }) }
         stage.scene = Scene(root, 400.0, 200.0).also { scene ->
             scene.stylesheets.add(javaClass.classLoader.getResource("style.css")!!.toExternalForm())
         }
         stage.initOwner(App.stage)
         stage.initModality(Modality.APPLICATION_MODAL)
         stage.isResizable = false
+        @Suppress("SpellCheckingInspection")
         stage.title = "Create new Codefile"
         okayButton.onMouseClicked = EventHandler { stage.close() }
         cancelButton.onMouseClicked = EventHandler { stage.close() }
         stage.showAndWait()
-        return Triple(subjectBox.value, noteBox.value, textField.text)
+        return Triple(subjectBox.value, noteBox.value, (FilenameUtils.removeExtension(textField.text) + ".java").makeValidFilename())
     }
 }

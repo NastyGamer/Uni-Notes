@@ -18,6 +18,7 @@ import java.util.regex.Pattern
 
 class LatexProvider : Provider {
 
+    @Suppress("SpellCheckingInspection")
     private val keywords = listOf(
         "cleanPatterns",
         "enableSynctex",
@@ -183,6 +184,7 @@ class LatexProvider : Provider {
         println("Starting index")
         val prov = DefaultCompletionProvider()
         keywords.forEach { word -> prov.addCompletion(BasicCompletion(prov, word)) }
+        @Suppress("SpellCheckingInspection")
         val folders = File("/usr/share/texmf-dist/tex/latex").listFiles(DirectoryFileFilter.INSTANCE as FileFilter)
         val globalQueue: Queue<String> = ConcurrentLinkedQueue()
         val pool = ThreadPool()
@@ -193,6 +195,8 @@ class LatexProvider : Provider {
                         .filter(Files::isRegularFile).filter(Files::isReadable).filter { file -> FilenameUtils.isExtension(file.toFile().name, "tex") }
                         .forEach {
                             val content = it.toFile().readText()
+
+                            @Suppress("SpellCheckingInspection")
                             val matcher = Pattern.compile("\\\\newcommand\\{\\\\(\\w+)}").matcher(content)
                             while (matcher.find()) {
                                 globalQueue.add(matcher.group(1))

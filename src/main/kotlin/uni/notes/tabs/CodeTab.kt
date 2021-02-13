@@ -6,12 +6,13 @@ import javafx.scene.control.Tab
 import org.apache.commons.io.FilenameUtils
 import org.fife.ui.autocomplete.AutoCompletion
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea
-import org.fife.ui.rsyntaxtextarea.SyntaxConstants
+import org.fife.ui.rtextarea.RTextScrollPane
 import uni.notes.io.IO
 import uni.notes.providers.CompletionProviders
 import uni.notes.types.File
 import uni.notes.ui.Colors
 import uni.notes.ui.Icons
+import uni.notes.util.SyntaxHighlighter
 import java.awt.Color
 import java.awt.Font
 import java.awt.event.KeyAdapter
@@ -23,6 +24,7 @@ import javax.swing.SwingUtilities
 object CodeTab : Tab() {
 
     val textArea = RSyntaxTextArea()
+    private val scrollPane = RTextScrollPane(textArea)
     var currentFile: File? = null
 
     private fun setupTextArea() {
@@ -48,26 +50,22 @@ object CodeTab : Tab() {
                 .deriveFont(16f)
         textArea.text = "Open a file to start editing it"
         textArea.isEditable = false
+        scrollPane.lineNumbersEnabled = true
+        scrollPane.isFoldIndicatorEnabled = true
+        scrollPane.isIconRowHeaderEnabled = true
+        scrollPane.background = Colors.grayDark
+        scrollPane.horizontalScrollBar.background = Colors.grayDark
     }
 
     fun openFile(file: File) {
         currentFile?.save(textArea.text)
         textArea.restoreDefaultSyntaxScheme()
-        textArea.syntaxEditingStyle = when (FilenameUtils.getExtension(file.name)) {
-            "java" -> SyntaxConstants.SYNTAX_STYLE_JAVA
-            "tex" -> SyntaxConstants.SYNTAX_STYLE_LATEX
-            else -> SyntaxConstants.SYNTAX_STYLE_NONE
-        }
-        val ac = AutoCompletion(
-            when (FilenameUtils.getExtension(file.name)) {
-                "java" -> CompletionProviders.javaProvider
-                "tex" -> CompletionProviders.latexProvider
-                else -> CompletionProviders.genericProvider
-            }
-        )
+        textArea.syntaxEditingStyle = SyntaxHighlighter[file.name]
+        val ac = AutoCompletion(CompletionProviders[file.name])
         ac.isAutoCompleteEnabled = true
         ac.isAutoActivationEnabled = true
         ac.autoActivationDelay = 0
+        ac.showDescWindow = true
         ac.install(textArea)
         textArea.isEditable = true
         textArea.text = file.jFile.readText()
@@ -78,7 +76,7 @@ object CodeTab : Tab() {
     init {
         setupTextArea()
         val node = SwingNode()
-        SwingUtilities.invokeLater { node.content = textArea }
+        SwingUtilities.invokeLater { node.content = scrollPane }
         textArea.addMouseListener(object : MouseAdapter() {
             override fun mouseClicked(e: MouseEvent?) {
                 Platform.runLater {

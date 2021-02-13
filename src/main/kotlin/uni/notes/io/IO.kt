@@ -33,6 +33,7 @@ object IO {
         if (!Controller.cButtonPdf.isSelected) return
         Controller.cTreeView.getSelectedFile()?.let {
             Notifications.showInfo("Building ${it.name}", Icons.hammerIcon())
+            @Suppress("SpellCheckingInspection")
             val pdfLatexBuilder = ProcessBuilder("pdflatex", "-interaction=nonstopmode", "-halt-on-error", it.name)
             pdfLatexBuilder.directory(Path(it.jFile.absolutePath).parent.toFile())
             val pdfLatexProc = pdfLatexBuilder.start()

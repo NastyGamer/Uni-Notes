@@ -2,8 +2,8 @@ package uni.notes.buttonHandler
 
 import com.jfoenix.controls.JFXButton
 import javafx.event.EventHandler
-import uni.notes.ui.Controller
 import uni.notes.tabs.SettingsTab
+import uni.notes.ui.Controller
 
 object SettingsButtonHandler : ButtonHandler<JFXButton> {
 

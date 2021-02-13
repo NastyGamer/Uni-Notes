@@ -6,6 +6,7 @@ import uni.notes.tabs.ImageTab
 import uni.notes.tabs.WebTab
 import uni.notes.types.File
 
+@Suppress("SpellCheckingInspection")
 object FiletypeAssocs {
 
     private val typeMap: HashMap<Array<String>, Class<out FiletypeTab>> = HashMap(
