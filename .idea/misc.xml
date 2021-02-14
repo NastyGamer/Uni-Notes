@@ -10,4 +10,11 @@
   <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="liberica-15" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
+  <component name="SuppressABINotification">
+    <option name="modulesWithSuppressedNotConfigured">
+      <set>
+        <option value="mainModule" />
+      </set>
+    </option>
+  </component>
 </project>

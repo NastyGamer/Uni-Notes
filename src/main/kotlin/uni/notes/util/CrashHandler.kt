@@ -11,6 +11,7 @@ import java.util.*
 class CrashHandler : Thread.UncaughtExceptionHandler {
 
     override fun uncaughtException(t: Thread, e: Throwable) {
+        System.err.println(e.stackTraceToString())
         IO.saveCurrentFile()
         CodeTab.currentFile = null
         Notifications.showError("IDE-error occurred")

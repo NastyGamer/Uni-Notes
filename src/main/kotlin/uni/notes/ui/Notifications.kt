@@ -14,49 +14,85 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import uni.notes.App
+import uni.notes.util.doWhen
 import java.net.URL
 
 object Notifications {
 
-    private fun showNotification(url: URL, text: String, image: ImageView, duration: Long) {
-        val stage = Stage()
-        stage.isAlwaysOnTop = true
-        stage.isResizable = false
-        stage.initStyle(StageStyle.UNDECORATED)
-        stage.title = "Notification"
-        val root = FXMLLoader(url).load<Parent>()
-        val label = root.childrenUnmodifiable[0] as Label
-        val imgView = root.childrenUnmodifiable[1] as ImageView
-        label.text = text
-        imgView.image = image.image
-        stage.scene = Scene(root, 300.0, 80.0).also { scene ->
-            scene.stylesheets.add(javaClass.classLoader.getResource("style.css")!!.toExternalForm())
-        }
-        stage.initOwner(App.stage)
-        stage.initModality(Modality.NONE)
-        stage.x = App.stage.x + App.stage.width - 320
-        stage.y = App.stage.y + App.stage.height - 100
-        stage.show()
-        if (duration > 0) {
-            GlobalScope.launch {
-                delay(duration)
-                Platform.runLater { stage.close() }
+    private val notifications = ArrayList<Notification>()
+
+    private class Notification(fxmlUrl: URL, text: String, image: ImageView, duration: Long) : Stage() {
+        init {
+            isAlwaysOnTop = true
+            isResizable = false
+            title = "Notification"
+            initStyle(StageStyle.UNDECORATED)
+            initOwner(App.stage)
+            initModality(Modality.NONE)
+            val root = FXMLLoader(fxmlUrl).load<Parent>()
+            scene = Scene(root, 300.0, 80.0)
+            val label = root.childrenUnmodifiable[0] as Label
+            val imgView = root.childrenUnmodifiable[1] as ImageView
+            label.text = text
+            imgView.image = image.image
+            x = App.stage.x + App.stage.width - 320
+            y = App.stage.y + App.stage.height - 100
+            show()
+            update()
+            if (duration > 0) {
+                GlobalScope.launch {
+                    delay(duration)
+                    Platform.runLater { close() }
+                    notifications.remove(this@Notification)
+                    update()
+                }
+            } else {
+                scene.onMouseClicked = EventHandler {
+                    close()
+                    notifications.remove(this@Notification)
+                    update()
+                }
             }
-        } else {
-            stage.scene.onMouseClicked = EventHandler { stage.close() }
         }
 
+    }
+
+    fun move() {
+        notifications.forEach { it.x = App.stage.x + App.stage.width - 320 }
+        update()
+    }
+
+    private fun update() {
+        var startY = App.stage.y + App.stage.height - 100
+        notifications.forEach { it.y = startY; startY -= 100 }
     }
 
     fun showWarning(text: String) {
-        Platform.runLater { showNotification(this.javaClass.classLoader.getResource("fxml/notifications/Warning.fxml")!!, text, Icons.warningIcon(), 3000) }
+        var notification: Notification? = null
+        Platform.runLater {
+            notification = Notification(this.javaClass.classLoader.getResource("fxml/notifications/Warning.fxml")!!.toURI().toURL(), text, Icons.warningIcon(), 3000)
+        }
+        doWhen({ notification != null }) {
+            notifications.add(notification!!)
+            update()
+        }
     }
 
     fun showError(text: String) {
-        Platform.runLater { showNotification(this.javaClass.classLoader.getResource("fxml/notifications/Error.fxml")!!, text, Icons.errorIcon(), -1) }
+        var notification: Notification? = null
+        Platform.runLater { notification = Notification(this.javaClass.classLoader.getResource("fxml/notifications/Error.fxml")!!.toURI().toURL(), text, Icons.errorIcon(), -1) }
+        doWhen({ notification != null }) {
+            notifications.add(notification!!)
+            update()
+        }
     }
 
     fun showInfo(text: String, image: ImageView) {
-        Platform.runLater { showNotification(this.javaClass.classLoader.getResource("fxml/notifications/Info.fxml")!!, text, image, 1000) }
+        var notification: Notification? = null
+        Platform.runLater { notification = Notification(this.javaClass.classLoader.getResource("fxml/notifications/Info.fxml")!!.toURI().toURL(), text, Icons.otherIcon(), 1000) }
+        doWhen({ notification != null }) {
+            notifications.add(notification!!)
+            update()
+        }
     }
 }

@@ -12,6 +12,7 @@ import uni.notes.providers.CompletionProviders
 import uni.notes.types.File
 import uni.notes.ui.Colors
 import uni.notes.ui.Icons
+import uni.notes.ui.Notifications
 import uni.notes.util.SyntaxHighlighter
 import java.awt.Color
 import java.awt.Font
@@ -25,6 +26,7 @@ object CodeTab : Tab() {
 
     val textArea = RSyntaxTextArea()
     private val scrollPane = RTextScrollPane(textArea)
+    private var autoCompletion: AutoCompletion? = null
     var currentFile: File? = null
 
     private fun setupTextArea() {
@@ -67,6 +69,7 @@ object CodeTab : Tab() {
         ac.autoActivationDelay = 0
         ac.showDescWindow = true
         ac.install(textArea)
+        autoCompletion = ac
         textArea.isEditable = true
         textArea.text = file.jFile.readText()
         text = file.name
@@ -98,6 +101,10 @@ object CodeTab : Tab() {
                         IO.buildAndShowPDF()
                     }
                 }
+                else if(e.keyCode == KeyEvent.VK_SPACE && e.isControlDown)
+                    Notifications.showError("err")
+                else if(e.keyCode in 0x41..0x5A && !e.isAltDown && !e.isControlDown && !e.isMetaDown)
+                    autoCompletion?.doCompletion()
             }
         })
         graphic = Icons.keyboardIcon()

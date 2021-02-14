@@ -7,6 +7,7 @@ import javafx.scene.Scene
 import javafx.scene.image.Image
 import javafx.stage.Stage
 import uni.notes.ui.Controller
+import uni.notes.ui.Notifications
 import kotlin.math.roundToInt
 
 
@@ -42,6 +43,8 @@ class App : Application() {
                     newValue.toInt()
                 )
             }
+        stage.xProperty().addListener { _, _, _ -> Notifications.move() }
+        stage.yProperty().addListener { _, _, _ -> Notifications.move() }
         stage.icons.add(Image(javaClass.classLoader.getResourceAsStream("Icon.png")))
         stage.title = "Uni Notes"
         Instance.stage = stage
