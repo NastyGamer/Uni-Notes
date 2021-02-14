@@ -89,7 +89,7 @@ object Notifications {
 
     fun showInfo(text: String, image: ImageView) {
         var notification: Notification? = null
-        Platform.runLater { notification = Notification(this.javaClass.classLoader.getResource("fxml/notifications/Info.fxml")!!.toURI().toURL(), text, Icons.otherIcon(), 1000) }
+        Platform.runLater { notification = Notification(this.javaClass.classLoader.getResource("fxml/notifications/Info.fxml")!!.toURI().toURL(), text, image, 1000) }
         doWhen({ notification != null }) {
             notifications.add(notification!!)
             update()
