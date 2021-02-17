@@ -14,6 +14,7 @@ import uni.notes.ui.Colors
 import uni.notes.ui.Icons
 import uni.notes.ui.Notifications
 import uni.notes.util.SyntaxHighlighter
+import uni.notes.util.modDown
 import java.awt.Color
 import java.awt.Font
 import java.awt.event.KeyAdapter
@@ -103,7 +104,7 @@ object CodeTab : Tab() {
                 }
                 else if(e.keyCode == KeyEvent.VK_SPACE && e.isControlDown)
                     Notifications.showError("err")
-                else if(e.keyCode in 0x41..0x5A && !e.isAltDown && !e.isControlDown && !e.isMetaDown)
+                else if(e.keyCode in 0x41..0x5A && !e.modDown())
                     autoCompletion?.doCompletion()
             }
         })

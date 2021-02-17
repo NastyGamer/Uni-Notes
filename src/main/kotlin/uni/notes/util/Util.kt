@@ -7,6 +7,7 @@ import kotlinx.coroutines.launch
 import uni.notes.types.File
 import uni.notes.ui.Controller
 import java.awt.Color
+import java.awt.event.KeyEvent
 
 fun Color.asPaint(): javafx.scene.paint.Color = javafx.scene.paint.Color.rgb(red, green, blue, 1.0)
 
@@ -53,3 +54,5 @@ fun String.makeValidFilename(): String {
 fun String.makeValidFoldername(): String {
     return replace(Regex("([/\\\\?*:\"<>.,;= ()&#])+"), "-")
 }
+
+fun KeyEvent.modDown(): Boolean = isAltDown || isControlDown || isMetaDown
